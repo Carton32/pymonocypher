@@ -8,7 +8,7 @@ written in portable C.
 from libc.stdint cimport uint8_t, uint32_t, uint64_t
 from libc.stdlib cimport malloc, free
 import binascii
-import secrets
+import os
 
 cdef extern from "monocypher.h":
 
@@ -581,12 +581,12 @@ def generate_key(length=None, method=None):
     length = 32 if length is None else int(length)
     if method in ['chacha20', None, '', 'default']:
         # Do not entirely trust the platform's random number generator
-        key = secrets.token_bytes(32)
-        nonce = secrets.token_bytes(24)
-        message = secrets.token_bytes(length)
+        key = os.urandom(32)
+        nonce = os.urandom(24)
+        message = os.urandom(length)
         key = chacha20(key, nonce, message)
-    elif method in ['os', 'secrets']:
-        key = secrets.token_bytes(length)
+    elif method in ['os']:
+        key = os.urandom(length)
     else:
         raise ValueError('unsupported method: %s' % method)
     return key
