@@ -18,9 +18,6 @@ try:
 except ImportError:
     USE_CYTHON = False
 
-print ("USE CYTHON : %s" % (USE_CYTHON))
-print ("Path : %s " % (os.path.join(MYPATH, 'c_monocypher.pyx')))
-
 ext = '.pyx' if USE_CYTHON else '.c'
 extensions = [
     setuptools.Extension('monocypher',
