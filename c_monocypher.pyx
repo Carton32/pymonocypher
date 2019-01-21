@@ -475,6 +475,14 @@ def key_exchange(your_secret_key, their_public_key):
         raise ValueError('key_exchange failed')
     return p
 
+def key_exchange_public_key(secret_key):
+    """Generate the public key from the secret key.
+    :param secret_key: The 32-byte secret key.
+    :return: The 32-byte public key.
+    """
+    public_key = bytes(32)
+    crypto_key_exchange_public_key(public_key, secret_key)
+    return public_key
 
 def public_key_compute(secret_key):
     """Generate the public key from the secret key.
