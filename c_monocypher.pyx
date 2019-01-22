@@ -177,8 +177,8 @@ cdef extern from "monocypher.h":
     #define crypto_key_exchange_public_key crypto_x25519_public_key
 
     cpdef void crypto_key_exchange_public_key(uint8_t        public_key[32],
-                                              const uint8_t  secret_key[32]))
-                                              
+                                              const uint8_t  secret_key[32])
+
     int crypto_key_exchange(uint8_t       shared_key      [32],
                             const uint8_t your_secret_key [32],
                             const uint8_t their_public_key[32])
