@@ -1,4 +1,5 @@
 #include "monocypher.h"
+#include <stdio.h>
 
 /////////////////
 /// Utilities ///
@@ -1964,6 +1965,20 @@ int crypto_key_exchange(u8       shared_key[32],
                         const u8 your_secret_key [32],
                         const u8 their_public_key[32])
 {
+    printf("My private key : \n");
+    for (uint8_t i = 0; i < sizeof(your_secret_key); ++i)
+    {
+        printf("0x%02x ", your_secret_key[i]);
+    }
+    printf("\n\n");
+    
+    printf("Their public key : \n");
+    for (uint8_t i = 0; i < sizeof(their_public_key); ++i)
+    {
+        printf("0x%02x ", their_public_key[i]);
+    }
+    printf("\n\n");
+  
     u8 raw_shared_secret[32];
     int status = crypto_x25519(raw_shared_secret,
                                your_secret_key, their_public_key);
