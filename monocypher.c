@@ -1,5 +1,4 @@
 #include "monocypher.h"
-#include <stdio.h>
 
 /////////////////
 /// Utilities ///
